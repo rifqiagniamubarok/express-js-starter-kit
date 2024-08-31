@@ -3,6 +3,11 @@ import { logger } from './application/logging.js';
 
 const PORT = process.env.PORT | 3000;
 
-web.listen(3000, () => {
-  logger.info(`server run on port ${PORT} for localhost run in http:://locahost:${PORT}`);
+web.listen(PORT, () => {
+  logger.info({
+    message: `server run on port ${PORT}`,
+    localhost: `http://locahost:${PORT}`,
+    'api-docs': `/api-docs`,
+    'local:api-docs': `http://localhost:${PORT}/api-docs/`,
+  });
 });
