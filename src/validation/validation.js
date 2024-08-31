@@ -1,9 +1,9 @@
-import { ResponseError } from '../error/response-error.js';
+import { JoiError } from '../error/joi-error.js';
 
 export const validate = (schema, request) => {
   const result = schema.validate(request);
   if (result.error) {
-    throw new ResponseError(400, result.error.message);
+    throw new JoiError(JSON.stringify(result.error.details));
   } else {
     return result.value;
   }

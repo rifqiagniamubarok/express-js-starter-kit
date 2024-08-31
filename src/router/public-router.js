@@ -5,3 +5,4 @@ export const publicRouter = new express.Router();
 
 // Auth
 publicRouter.post('/auth/register', userController.register);
+publicRouter.post('/auth/login', userController.login);
