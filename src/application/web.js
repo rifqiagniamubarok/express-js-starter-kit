@@ -3,6 +3,7 @@ import { publicRouter } from '../router/public-router.js';
 import { errorMiddleware } from '../middleware/error-middleware.js';
 import morgan from '../middleware/morgan-middleware.js';
 import { setupSwagger } from './swagger.js';
+import setupRouter from '../router/index.js';
 
 const web = express();
 
@@ -13,8 +14,7 @@ setupSwagger(web);
 web.use(express.json());
 web.use(morgan);
 
-web.use('/api/v1', publicRouter);
-
+setupRouter(web);
 // Error middlewar
 web.use(errorMiddleware);
 
