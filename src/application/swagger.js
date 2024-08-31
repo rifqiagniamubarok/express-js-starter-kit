@@ -1,7 +1,7 @@
 import swaggerUi from 'swagger-ui-express';
 import docPaths from '../../docs/swaggerPaths.js';
 
-const port = process.env.PORT | 3000;
+const port = process.env.PORT || 3000;
 
 const swaggerDocument = {
   openapi: '3.0.0',
