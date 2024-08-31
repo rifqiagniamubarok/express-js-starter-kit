@@ -1,6 +1,6 @@
-import chalk from 'chalk';
 import dayjs from 'dayjs';
 import morgan from 'morgan';
+import chalk from 'chalk';
 import { logger } from '../application/logging.js';
 
 const customFormat = (tokens, req, res) => {
