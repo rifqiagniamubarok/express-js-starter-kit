@@ -1,4 +1,4 @@
-import { prismaClient } from '../src/application/database.js';
+import { prismaClient } from '../src/application/database';
 
 export const removeUser = async (username) => {
   await prismaClient.user.deleteMany({

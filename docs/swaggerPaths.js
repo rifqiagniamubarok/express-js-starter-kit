@@ -14,5 +14,5 @@ const docPaths = {
   '/api/v1/auth/login': loginDoc,
 };
 
-// export path
+// Export path
 export default docPaths;
