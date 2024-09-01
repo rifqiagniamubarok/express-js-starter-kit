@@ -1,5 +1,5 @@
 {
-  "name": "template",
+  "name": "starter-js-express-prisma",
   "version": "1.0.0",
   "main": "src/main.js",
   "type": "module",
