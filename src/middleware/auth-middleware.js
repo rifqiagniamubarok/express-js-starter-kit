@@ -1,11 +1,11 @@
 import { jwtVerify } from '../utils/encryption.js';
 
-export const authMiddleware = async (req, res, next) => {
+export const authMiddleware = (req, res, next) => {
   try {
+    const errMessage = { messsage: 'Unauthorized' };
     const authorization = req.get('Authorization');
 
     const token = authorization.split('Bearer ')[1];
-    const errMessage = { messsage: 'Unauthorized' };
     if (!token) {
       return res.status(401).json({
         errors: [errMessage],
@@ -16,9 +16,9 @@ export const authMiddleware = async (req, res, next) => {
     req.user = { id, username };
 
     return next();
-  } catch (error) {
+  } catch (err) {
     return res.status(401).json({
-      errors: [errMessage],
+      errors: [{ messsage: 'Unauthorized', ...err }],
     });
   }
 };

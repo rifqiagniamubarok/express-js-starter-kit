@@ -1,12 +1,12 @@
 import { JoiError } from '../error/joi-error.js';
 import { ResponseError } from '../error/response-error.js';
 
-export const errorMiddleware = async (err, req, res, next) => {
+export const errorMiddleware = (err, _, res, next) => {
   if (!err) {
     return next();
   }
 
-  if (err?.type == 'entity.parse.failed' && err?.body) {
+  if (err?.type === 'entity.parse.failed' && err?.body) {
     const error = { message: `Invalid body request`, body: err?.body, path: ['body request'] };
     return res.status(400).json({
       success: false,

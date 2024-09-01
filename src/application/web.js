@@ -1,5 +1,4 @@
 import express from 'express';
-import { publicRouter } from '../router/public-router.js';
 import { errorMiddleware } from '../middleware/error-middleware.js';
 import morgan from '../middleware/morgan-middleware.js';
 import { setupSwagger } from './swagger.js';
@@ -7,7 +6,7 @@ import setupRouter from '../router/index.js';
 
 const web = express();
 
-// swagger
+// Swagger
 setupSwagger(web);
 
 // Middleware

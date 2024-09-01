@@ -1,7 +1,6 @@
 import supertest from 'supertest';
 import { web } from '../src/application/test-web.js';
 import { removeUser } from './test-utils.js';
-import { logger } from '../src/application/logging.js';
 
 describe('/auth', () => {
   const username = 'usertesting';
