@@ -1,7 +1,9 @@
 import swaggerUi from 'swagger-ui-express';
 import docPaths from '../../docs/swaggerPaths.js';
+import dotenv from 'dotenv';
+dotenv.config();
 
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 const swaggerDocument = {
   openapi: '3.0.0',
@@ -12,7 +14,7 @@ const swaggerDocument = {
   },
   servers: [
     {
-      url: `http://localhost:${port}`,
+      url: `http://localhost:${PORT}`,
       description: 'Development server',
     },
   ],
