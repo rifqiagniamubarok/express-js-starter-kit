@@ -1,14 +1,14 @@
 import cors from 'cors';
 
-const whitelist = ['http://localhost:3000', 'http://localhost:3001'];
+// Cors whitelist
+const whitelist = ['http://localhost:3002', 'http://localhost:3001'];
 const corsOptions = {
   origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
+    const isOriginWhitelist = (origin && whitelist.includes(origin)) || false;
+    callback(null, isOriginWhitelist);
   },
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
 };
 
 const corsMiddleware = cors(corsOptions);

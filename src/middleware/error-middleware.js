@@ -1,3 +1,4 @@
+import { logger } from '../application/logging.js';
 import { JoiError } from '../error/joi-error.js';
 import { ResponseError } from '../error/response-error.js';
 
@@ -27,6 +28,7 @@ export const errorMiddleware = (err, _, res, next) => {
       errors: JSON.parse(err.message),
     });
   } else {
+    logger.error(JSON.stringify(err));
     return res.status(500).json({
       success: false,
       errors: [
