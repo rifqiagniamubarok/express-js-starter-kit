@@ -1,7 +1,7 @@
 import cors from 'cors';
 
 // Cors whitelist
-const whitelist = ['http://localhost:3002', 'http://localhost:3001'];
+const whitelist = ['http://localhost:3000', 'http://localhost:3001'];
 const corsOptions = {
   origin: function (origin, callback) {
     const isOriginWhitelist = (origin && whitelist.includes(origin)) || false;
