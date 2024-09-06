@@ -10,12 +10,12 @@ const register = async (request) => {
 
   const countUser = await prismaClient.user.count({
     where: {
-      username: userRequest.username,
+      email: userRequest.email,
     },
   });
 
   if (countUser !== 0) {
-    throw new ResponseError(400, 'username already exists');
+    throw new ResponseError(400, 'email has been used');
   }
 
   userRequest.password = await bcrypt.hash(userRequest.password, 10);
@@ -24,7 +24,8 @@ const register = async (request) => {
     data: userRequest,
     select: {
       id: true,
-      username: true,
+      name: true,
+      email: true,
     },
   });
 
@@ -36,20 +37,20 @@ const login = async (request) => {
 
   const user = await prismaClient.user.findFirst({
     where: {
-      username: userRequest.username,
+      email: userRequest.email,
     },
   });
 
   if (!user) {
-    throw new ResponseError(400, 'Username or password wrong', ['username', 'password']);
+    throw new ResponseError(400, 'Email or password wrong', ['general']);
   }
 
   const isPasswordValid = await bcrypt.compare(userRequest.password, user.password);
   if (!isPasswordValid) {
-    throw new ResponseError(400, 'Username or password wrong', ['username', 'password']);
+    throw new ResponseError(400, 'Email or password wrong', ['general']);
   }
 
-  const tokenPayload = { id: user.id, username: user.username };
+  const tokenPayload = { id: user.id, name: user.name, email: user.email };
 
   const token = jwtSign(tokenPayload);
 
